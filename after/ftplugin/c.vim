@@ -10,3 +10,4 @@ augroup END
 setlocal formatoptions=crq
 setlocal textwidth=80
 setlocal commentstring=//\ %s
+setlocal cinoptions=(0l1

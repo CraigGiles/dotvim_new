@@ -17,15 +17,17 @@ Plug 'rking/ag.vim'
 Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/BufOnly.vim'
 Plug 'udalov/kotlin-vim'
+Plug 'jansedivy/jai.vim'
 
 call plug#end()
 
+let $MYGVIMRC="~/.vim/gvimrc"
 "
 "      --- Auto Groups ---
 " -------------------------------------------------
 augroup vimrc_group
     autocmd! vimrc_group
-    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if exists('g:GuiLoaded') | so $MYGVIMRC | endif
 augroup END
 
 augroup quickfix_group
@@ -49,7 +51,7 @@ augroup ags_mode
     autocmd Filetype agsv nmap <buffer> <D-N> :AgsPrevResult<CR>
 augroup end
 
-if has('gui_macvim')
+if exists('g:GuiLoaded')
   " NOTE: font size 11 means on my monitor i can run it 'fullscreen' and not have extra pixels
   set guifont=Liberation\ Mono:h11
   nnoremap <D-F10> :RunFullScreen<CR>
@@ -102,7 +104,7 @@ nnoremap <Tab> za
 command! CD cd %:p:h
 
 " cmd f opens up the file list
-if has('gui_macvim')
+if exists('g:GuiLoaded')
     " Search the codebase for the word under cursor
     nnoremap <C-f> :call SearchCodebase(expand('<cword>'))<CR>
 
